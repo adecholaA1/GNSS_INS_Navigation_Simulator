@@ -368,17 +368,17 @@ On parle donc de **pseudodistance**.
 
 Mathématiquement :
 
-\[
+$$
 \rho = d + c \Delta t + \varepsilon
-\]
+$$
 
 avec :
 
-- \( \rho \) : pseudodistance mesurée ;
-- \( d \) : distance géométrique réelle ;
-- \( c \) : vitesse de la lumière ;
-- \( \Delta t \) : erreur d'horloge du récepteur ;
-- \( \varepsilon \) : ensemble des erreurs de mesure.
+- $ \rho $ : pseudodistance mesurée ;
+- $ d $ : distance géométrique réelle ;
+- $ c $ : vitesse de la lumière ;
+- $ \Delta t $ : erreur d'horloge du récepteur ;
+- $ \varepsilon $ : ensemble des erreurs de mesure.
 
 Même une erreur d'horloge extrêmement faible peut produire une erreur importante.
 
@@ -582,7 +582,7 @@ Zi
 
 L'ensemble des satellites est stocké sous la forme d'une matrice :
 
-\[
+$$
 S =
 \begin{bmatrix}
 X_1 & Y_1 & Z_1 \\
@@ -590,7 +590,7 @@ X_2 & Y_2 & Z_2 \\
 \vdots & \vdots & \vdots \\
 X_N & Y_N & Z_N
 \end{bmatrix}
-\]
+$$
 
 Cette matrice constitue l'entrée principale de tous les algorithmes GNSS du projet :
 
@@ -642,14 +642,14 @@ permet d'estimer le temps de propagation.
 
 La distance parcourue est alors donnée par :
 
-\[
+$$
 d=c\times\Delta t
-\]
+$$
 
 avec :
 
-- \(c\) : vitesse de la lumière (299 792 458 m/s) ;
-- \(\Delta t\) : temps de propagation.
+- $c$ : vitesse de la lumière (299 792 458 m/s) ;
+- $\Delta t$ : temps de propagation.
 
 Le GNSS transforme donc un problème de mesure de temps en un problème de mesure de distance.
 
@@ -659,7 +659,7 @@ Le GNSS transforme donc un problème de mesure de temps en un problème de mesur
 
 La véritable mesure réalisée par un récepteur est modélisée par :
 
-\[
+$$
 \rho_i
 =
 \|P-S_i\|
@@ -667,19 +667,19 @@ La véritable mesure réalisée par un récepteur est modélisée par :
 c\Delta t
 +
 \varepsilon_i
-\]
+$$
 
 où :
 
-- \(\rho_i\) est la pseudodistance du satellite \(i\) ;
-- \(P=(x,y,z)\) est la position inconnue du récepteur ;
-- \(S_i=(X_i,Y_i,Z_i)\) est la position connue du satellite ;
-- \(c\Delta t\) représente le biais d'horloge ;
-- \(\varepsilon_i\) regroupe toutes les erreurs de mesure.
+- $\rho_i$ est la pseudodistance du satellite $i$ ;
+- $P=(x,y,z)$ est la position inconnue du récepteur ;
+- $S_i=(X_i,Y_i,Z_i)$ est la position connue du satellite ;
+- $c\Delta t$ représente le biais d'horloge ;
+- $\varepsilon_i$ regroupe toutes les erreurs de mesure.
 
 La distance géométrique est calculée par :
 
-\[
+$$
 d_i
 =
 \sqrt{
@@ -689,7 +689,7 @@ d_i
 +
 (z-Z_i)^2
 }
-\]
+$$
 
 Cette équation constitue la base de tous les algorithmes GNSS.
 
@@ -701,7 +701,7 @@ La présence de la racine carrée rend le système non linéaire.
 
 Par exemple :
 
-\[
+$$
 d=
 \sqrt{
 (x-X)^2
@@ -710,13 +710,13 @@ d=
 +
 (z-Z)^2
 }
-\]
+$$
 
 Il est impossible d'isoler directement les inconnues :
 
-- \(x\)
-- \(y\)
-- \(z\)
+- $x$
+- $y$
+- $z$
 
 C'est pourquoi les méthodes classiques de résolution de systèmes linéaires ne peuvent pas être utilisées.
 
@@ -738,11 +738,11 @@ Le récepteur électronique introduit un bruit aléatoire.
 
 Ce bruit est généralement modélisé par une loi normale :
 
-\[
+$$
 \varepsilon
 \sim
 \mathcal N(0,\sigma^2)
-\]
+$$
 
 Dans le simulateur, ce bruit est généré par :
 
@@ -968,9 +968,9 @@ Elles indiquent uniquement la distance estimée entre le récepteur et chaque sa
 
 Le problème consiste donc à retrouver la position inconnue :
 
-\[
+$$
 P=(x,y,z)
-\]
+$$
 
 à partir de toutes les pseudodistances disponibles.
 
@@ -980,32 +980,32 @@ C'est ce problème que résout l'algorithme de Gauss-Newton.
 
 # 10.2 Nature du problème
 
-Pour un satellite \(i\), la relation entre la position du récepteur et la pseudodistance est :
+Pour un satellite $i$, la relation entre la position du récepteur et la pseudodistance est :
 
-\[
+$$
 \rho_i=
 \sqrt{
 (x-X_i)^2+
 (y-Y_i)^2+
 (z-Z_i)^2
 }
-\]
+$$
 
 avec :
 
-- \((X_i,Y_i,Z_i)\) : position connue du satellite ;
-- \((x,y,z)\) : position inconnue du récepteur.
+- $(X_i,Y_i,Z_i)$ : position connue du satellite ;
+- $(x,y,z)$ : position inconnue du récepteur.
 
 Lorsque plusieurs satellites sont visibles, on obtient un système d'équations :
 
-\[
+$$
 \begin{cases}
 \rho_1=f_1(x,y,z)\\
 \rho_2=f_2(x,y,z)\\
 \vdots\\
 \rho_N=f_N(x,y,z)
 \end{cases}
-\]
+$$
 
 Les inconnues apparaissent sous une racine carrée.
 
@@ -1077,16 +1077,16 @@ Le processus s'arrête lorsque la correction devient suffisamment faible.
 
 À partir de la position courante du récepteur, on calcule la distance théorique vers chaque satellite.
 
-Pour le satellite \(i\) :
+Pour le satellite $i$ :
 
-\[
+$$
 \hat{\rho}_i=
 \sqrt{
 (x-X_i)^2+
 (y-Y_i)^2+
 (z-Z_i)^2
 }
-\]
+$$
 
 Ces distances représentent ce que mesurerait un récepteur parfait placé à la position actuelle.
 
@@ -1098,16 +1098,16 @@ Une fois les distances prédites calculées, elles sont comparées aux mesures r
 
 Le résidu est défini par :
 
-\[
+$$
 r_i=
 \rho_i-
 \hat{\rho}_i
-\]
+$$
 
 avec :
 
-- \(\rho_i\) : mesure réelle ;
-- \(\hat{\rho}_i\) : mesure prédite.
+- $\rho_i$ : mesure réelle ;
+- $\hat{\rho}_i$ : mesure prédite.
 
 Les résidus indiquent donc l'erreur commise par la position actuelle.
 
@@ -1127,29 +1127,29 @@ Pour savoir comment modifier la position, il faut connaître la sensibilité de 
 
 Cette information est contenue dans la matrice Jacobienne.
 
-Pour le satellite \(i\) :
+Pour le satellite $i$ :
 
-\[
+$$
 \frac{\partial\rho_i}{\partial x}
 =
 \frac{x-X_i}{d_i}
-\]
+$$
 
-\[
+$$
 \frac{\partial\rho_i}{\partial y}
 =
 \frac{y-Y_i}{d_i}
-\]
+$$
 
-\[
+$$
 \frac{\partial\rho_i}{\partial z}
 =
 \frac{z-Z_i}{d_i}
-\]
+$$
 
 La Jacobienne est donc :
 
-\[
+$$
 J=
 \begin{bmatrix}
 \frac{\partial\rho_1}{\partial x} &
@@ -1162,7 +1162,7 @@ J=
 \frac{\partial\rho_N}{\partial y} &
 \frac{\partial\rho_N}{\partial z}
 \end{bmatrix}
-\]
+$$
 
 Cette matrice relie directement une petite variation de position à la variation attendue des pseudodistances.
 
@@ -1172,18 +1172,18 @@ Cette matrice relie directement une petite variation de position à la variation
 
 Une fois la Jacobienne construite, la correction de position est obtenue par la résolution du problème de moindres carrés :
 
-\[
+$$
 \Delta x
 =
 (J^T J)^{-1}
 J^T
 r
-\]
+$$
 
 où :
 
-- \(r\) est le vecteur des résidus ;
-- \(J\) est la Jacobienne.
+- $r$ est le vecteur des résidus ;
+- $J$ est la Jacobienne.
 
 Cette équation est la pierre angulaire de l'algorithme de Gauss-Newton.
 
@@ -1195,23 +1195,23 @@ Elle fournit la meilleure correction de position au sens des moindres carrés.
 
 La nouvelle estimation est obtenue par :
 
-\[
+$$
 x_{k+1}
 =
 x_k
 +
 \Delta x
-\]
+$$
 
 La procédure est répétée jusqu'à ce que :
 
-\[
+$$
 ||\Delta x||
 <
 \varepsilon
-\]
+$$
 
-où \(\varepsilon\) représente le seuil de convergence.
+où $\varepsilon$ représente le seuil de convergence.
 
 Dans le projet, ce seuil est fixé à :
 
@@ -1471,7 +1471,7 @@ Ligne de la matrice H
 
 Pour N satellites, on obtient :
 
-\[
+$$
 H=
 \begin{bmatrix}
 h_1\\
@@ -1479,7 +1479,7 @@ h_2\\
 \vdots\\
 h_N
 \end{bmatrix}
-\]
+$$
 
 Chaque ligne représente la direction entre le récepteur et un satellite.
 
@@ -1491,9 +1491,9 @@ Cette matrice décrit entièrement la géométrie de la constellation.
 
 À partir de cette matrice, on calcule :
 
-\[
+$$
 Q=(H^TH)^{-1}
-\]
+$$
 
 Cette matrice ne dépend :
 
@@ -1524,7 +1524,7 @@ Il prend en compte :
 
 Mathématiquement :
 
-\[
+$$
 GDOP=
 \sqrt{
 Q_{xx}
@@ -1535,7 +1535,7 @@ Q_{zz}
 +
 Q_{tt}
 }
-\]
+$$
 
 Plus cette valeur est faible, meilleure est la qualité globale de la constellation.
 
@@ -1545,7 +1545,7 @@ Plus cette valeur est faible, meilleure est la qualité globale de la constellat
 
 Le PDOP mesure uniquement la qualité de la position tridimensionnelle.
 
-\[
+$$
 PDOP=
 \sqrt{
 Q_{xx}
@@ -1554,7 +1554,7 @@ Q_{yy}
 +
 Q_{zz}
 }
-\]
+$$
 
 C'est l'indicateur le plus utilisé dans la littérature GNSS.
 
@@ -1566,14 +1566,14 @@ Dans ce projet, il constitue le principal indicateur de qualité de la constella
 
 Le HDOP caractérise uniquement la précision horizontale.
 
-\[
+$$
 HDOP=
 \sqrt{
 Q_{xx}
 +
 Q_{yy}
 }
-\]
+$$
 
 Il est très utilisé dans :
 
@@ -1587,12 +1587,12 @@ Il est très utilisé dans :
 
 Le VDOP caractérise uniquement la précision verticale.
 
-\[
+$$
 VDOP=
 \sqrt{
 Q_{zz}
 }
-\]
+$$
 
 La composante verticale est généralement moins précise que les composantes horizontales.
 
@@ -1608,12 +1608,12 @@ La géométrie verticale est donc naturellement moins favorable.
 
 Le TDOP mesure la précision sur le biais d'horloge.
 
-\[
+$$
 TDOP=
 \sqrt{
 Q_{tt}
 }
-\]
+$$
 
 Même si ce projet considère un biais d'horloge compensé, cet indicateur est calculé afin de rester cohérent avec les méthodes utilisées dans les récepteurs GNSS réels.
 
@@ -1760,7 +1760,7 @@ Dans ce projet, ils constituent un indicateur essentiel pour analyser les perfor
 
 Ces estimations sont correctes, mais elles présentent une caractéristique importante : elles sont **indépendantes les unes des autres**.
 
-Autrement dit, la position estimée à l'instant \(k\) ne tient pas compte de celle estimée à l'instant \(k-1\).
+Autrement dit, la position estimée à l'instant $k$ ne tient pas compte de celle estimée à l'instant $k-1$.
 
 Le récepteur recommence entièrement le calcul à chaque nouvelle mesure.
 
@@ -1824,7 +1824,7 @@ Dans ce projet, le filtre estime simultanément :
 
 Le vecteur d'état est donc défini par :
 
-\[
+$$
 x=
 \begin{bmatrix}
 x\\
@@ -1834,7 +1834,7 @@ v_x\\
 v_y\\
 v_z
 \end{bmatrix}
-\]
+$$
 
 Les trois premières composantes représentent la position.
 
@@ -1862,22 +1862,22 @@ Entre deux mesures GNSS, on suppose que la vitesse reste constante.
 
 La position évolue alors selon :
 
-\[
+$$
 p_{k+1}
 =
 p_k
 +
 v_k
 \Delta t
-\]
+$$
 
 La vitesse est supposée inchangée :
 
-\[
+$$
 v_{k+1}
 =
 v_k
-\]
+$$
 
 Cette hypothèse est suffisante pour lisser efficacement la trajectoire GNSS.
 
@@ -1887,16 +1887,16 @@ Cette hypothèse est suffisante pour lisser efficacement la trajectoire GNSS.
 
 Le modèle dynamique est représenté sous forme matricielle.
 
-\[
+$$
 x_{k+1}
 =
 F
 x_k
-\]
+$$
 
 avec :
 
-\[
+$$
 F=
 \begin{bmatrix}
 1&0&0&dt&0&0\\
@@ -1906,7 +1906,7 @@ F=
 0&0&0&0&1&0\\
 0&0&0&0&0&1
 \end{bmatrix}
-\]
+$$
 
 Cette matrice traduit simplement le fait que :
 
@@ -1929,9 +1929,9 @@ Ces phénomènes sont modélisés par le **bruit de processus**.
 
 Sa covariance est notée :
 
-\[
+$$
 Q
-\]
+$$
 
 Une valeur élevée signifie que l'on fait peu confiance au modèle dynamique.
 
@@ -1943,14 +1943,14 @@ Une valeur faible signifie que le mouvement est supposé très régulier.
 
 Le GNSS fournit uniquement :
 
-\[
+$$
 z=
 \begin{bmatrix}
 x\\
 y\\
 z
 \end{bmatrix}
-\]
+$$
 
 La vitesse n'est pas directement observée.
 
@@ -1958,21 +1958,21 @@ Le filtre doit donc l'estimer indirectement.
 
 La relation entre l'état et la mesure est :
 
-\[
+$$
 z=
 Hx
-\]
+$$
 
 avec :
 
-\[
+$$
 H=
 \begin{bmatrix}
 1&0&0&0&0&0\\
 0&1&0&0&0&0\\
 0&0&1&0&0&0
 \end{bmatrix}
-\]
+$$
 
 ---
 
@@ -1982,17 +1982,17 @@ Les positions GNSS sont bruitées.
 
 Cette incertitude est modélisée par la matrice :
 
-\[
+$$
 R
-\]
+$$
 
 Dans ce projet, cette matrice représente la variance des positions issues de Gauss-Newton.
 
-Plus \(R\) est grand :
+Plus $R$ est grand :
 
 - moins le filtre fait confiance au GNSS.
 
-Plus \(R\) est petit :
+Plus $R$ est petit :
 
 - plus la mesure influence la solution finale.
 
@@ -2002,22 +2002,22 @@ Plus \(R\) est petit :
 
 Le filtre commence par prédire l'état futur.
 
-\[
+$$
 \hat{x}_{k|k-1}
 =
 F
 x_{k-1}
-\]
+$$
 
 La covariance est également propagée :
 
-\[
+$$
 P_{k|k-1}
 =
 FPF^T
 +
 Q
-\]
+$$
 
 Cette étape correspond à ce que le système pense obtenir avant toute nouvelle mesure.
 
@@ -2029,14 +2029,14 @@ Lorsque la mesure GNSS arrive, elle est comparée à la prédiction.
 
 L'innovation est :
 
-\[
+$$
 y
 =
 z
 -
 H
 \hat{x}
-\]
+$$
 
 Cette innovation représente l'écart entre :
 
@@ -2051,12 +2051,12 @@ Le filtre décide ensuite quelle confiance accorder à cette innovation.
 
 Le gain de Kalman est calculé par :
 
-\[
+$$
 K
 =
 PH^T
 (HPH^T+R)^{-1}
-\]
+$$
 
 C'est le cœur du filtre.
 
@@ -2087,21 +2087,21 @@ Le filtre privilégie son modèle dynamique.
 
 L'état est corrigé par :
 
-\[
+$$
 x
 =
 \hat{x}
 +
 Ky
-\]
+$$
 
 Puis la covariance est mise à jour :
 
-\[
+$$
 P
 =
 (I-KH)P
-\]
+$$
 
 Le cycle est alors terminé.
 
@@ -2672,18 +2672,18 @@ Un accéléromètre mesure une grandeur appelée **accélération spécifique** 
 
 Cette grandeur est définie par :
 
-\[
+$$
 \mathbf{f}
 =
 \mathbf{a}
 -
 \mathbf{g}
-\]
+$$
 
 où :
 
-- \(\mathbf{a}\) est l'accélération réelle du véhicule ;
-- \(\mathbf{g}\) est le vecteur gravité.
+- $\mathbf{a}$ est l'accélération réelle du véhicule ;
+- $\mathbf{g}$ est le vecteur gravité.
 
 Autrement dit, l'accéléromètre ne mesure jamais directement le mouvement du véhicule.
 
@@ -2749,7 +2749,7 @@ Un accéléromètre moderne mesure simultanément les accélérations selon troi
 
 Les mesures sont regroupées dans un vecteur :
 
-\[
+$$
 \mathbf{f}
 =
 \begin{bmatrix}
@@ -2757,7 +2757,7 @@ f_x\\
 f_y\\
 f_z
 \end{bmatrix}
-\]
+$$
 
 Ces composantes sont exprimées dans le **repère du véhicule** (Body Frame).
 
@@ -2775,7 +2775,7 @@ Une fois les accélérations exprimées dans le repère de navigation et la grav
 
 Première intégration :
 
-\[
+$$
 \mathbf{v}(t)
 =
 \mathbf{v}_0
@@ -2783,13 +2783,13 @@ Première intégration :
 \int
 \mathbf{a}(t)
 dt
-\]
+$$
 
 Cette équation fournit la vitesse.
 
 Deuxième intégration :
 
-\[
+$$
 \mathbf{p}(t)
 =
 \mathbf{p}_0
@@ -2797,7 +2797,7 @@ Deuxième intégration :
 \int
 \mathbf{v}(t)
 dt
-\]
+$$
 
 Cette seconde intégration fournit la position.
 
@@ -2865,11 +2865,11 @@ Le simulateur reproduit plusieurs phénomènes physiques.
 
 Le bruit électronique est modélisé par une variable aléatoire gaussienne :
 
-\[
+$$
 n
 \sim
 \mathcal{N}(0,\sigma^2)
-\]
+$$
 
 Ce bruit varie à chaque échantillon.
 
@@ -2881,7 +2881,7 @@ Le biais représente une erreur constante.
 
 La mesure devient :
 
-\[
+$$
 f_{mes}
 =
 f_{réelle}
@@ -2889,12 +2889,12 @@ f_{réelle}
 b
 +
 n
-\]
+$$
 
 où :
 
-- \(b\) est le biais ;
-- \(n\) est le bruit.
+- $b$ est le biais ;
+- $n$ est le bruit.
 
 Le biais est beaucoup plus dangereux que le bruit, car il est systématiquement intégré au cours du temps.
 
@@ -3028,7 +3028,7 @@ La mesure est exprimée en :
 
 Le vecteur mesuré est :
 
-\[
+$$
 \boldsymbol{\omega}
 =
 \begin{bmatrix}
@@ -3036,13 +3036,13 @@ Le vecteur mesuré est :
 \omega_y\\
 \omega_z
 \end{bmatrix}
-\]
+$$
 
 avec :
 
-- \(\omega_x\) : vitesse de roulis ;
-- \(\omega_y\) : vitesse de tangage ;
-- \(\omega_z\) : vitesse de lacet.
+- $\omega_x$ : vitesse de roulis ;
+- $\omega_y$ : vitesse de tangage ;
+- $\omega_z$ : vitesse de lacet.
 
 ---
 
@@ -3083,7 +3083,7 @@ L'orientation est obtenue par intégration.
 
 Mathématiquement :
 
-\[
+$$
 \theta(t)
 =
 \theta_0
@@ -3091,7 +3091,7 @@ Mathématiquement :
 \int
 \omega(t)
 dt
-\]
+$$
 
 À chaque période d'échantillonnage :
 
@@ -3449,7 +3449,7 @@ Un quaternion est une représentation mathématique d'une rotation dans l'espace
 
 Il est constitué de quatre composantes :
 
-\[
+$$
 q=
 \begin{bmatrix}
 q_0\\
@@ -3457,12 +3457,12 @@ q_1\\
 q_2\\
 q_3
 \end{bmatrix}
-\]
+$$
 
 où :
 
-- \(q_0\) est la partie scalaire ;
-- \(q_1,q_2,q_3\) constituent la partie vectorielle.
+- $q_0$ est la partie scalaire ;
+- $q_1,q_2,q_3$ constituent la partie vectorielle.
 
 Un quaternion représente exactement la même orientation qu'une matrice de rotation, mais sous une forme plus compacte et plus robuste.
 
@@ -3476,13 +3476,13 @@ Pourquoi utiliser quatre nombres ?
 
 Parce que les quaternions sont soumis à une contrainte :
 
-\[
+$$
 ||q||=1
-\]
+$$
 
 Autrement dit :
 
-\[
+$$
 q_0^2
 +
 q_1^2
@@ -3492,7 +3492,7 @@ q_2^2
 q_3^2
 =
 1
-\]
+$$
 
 Cette normalisation retire un degré de liberté.
 
@@ -3506,21 +3506,21 @@ Une rotation peut être décrite par :
 
 - un axe unitaire :
 
-\[
+$$
 \mathbf{u}
 =
 (u_x,u_y,u_z)
-\]
+$$
 
 - un angle :
 
-\[
+$$
 \theta
-\]
+$$
 
 Le quaternion associé est :
 
-\[
+$$
 q=
 \begin{bmatrix}
 \cos(\theta/2)\\
@@ -3528,7 +3528,7 @@ u_x\sin(\theta/2)\\
 u_y\sin(\theta/2)\\
 u_z\sin(\theta/2)
 \end{bmatrix}
-\]
+$$
 
 Cette représentation évite les singularités rencontrées avec les angles d'Euler.
 
@@ -3574,11 +3574,11 @@ Sa norme n'est alors plus exactement égale à 1.
 
 On applique donc régulièrement une normalisation :
 
-\[
+$$
 q
 \leftarrow
 \frac{q}{||q||}
-\]
+$$
 
 Cette opération est extrêmement importante.
 
@@ -3787,25 +3787,25 @@ Chaque étape dépend directement de la précédente.
 
 Les gyroscopes :
 
-\[
+$$
 \omega =
 \begin{bmatrix}
 \omega_x\\
 \omega_y\\
 \omega_z
 \end{bmatrix}
-\]
+$$
 
 Les accéléromètres :
 
-\[
+$$
 f =
 \begin{bmatrix}
 f_x\\
 f_y\\
 f_z
 \end{bmatrix}
-\]
+$$
 
 Ces mesures sont exprimées dans le repère Body.
 
@@ -3845,9 +3845,9 @@ Cette matrice permet de transformer un vecteur exprimé dans le repère Body ver
 
 On note généralement cette matrice :
 
-\[
+$$
 C_b^n
-\]
+$$
 
 Cette notation signifie :
 
@@ -3863,12 +3863,12 @@ Elles sont projetées dans le repère Navigation grâce à la matrice de rotatio
 
 Mathématiquement :
 
-\[
+$$
 f_n
 =
 C_b^n
 f_b
-\]
+$$
 
 Cette opération est réalisée à chaque période d'échantillonnage.
 
@@ -3882,21 +3882,21 @@ L'accéléromètre ne mesure pas directement l'accélération du véhicule.
 
 Il mesure :
 
-\[
+$$
 f=a-g
-\]
+$$
 
 Pour retrouver l'accélération réelle, il faut donc ajouter le vecteur gravité.
 
 On obtient :
 
-\[
+$$
 a
 =
 f_n
 +
 g
-\]
+$$
 
 Cette opération est appelée :
 
@@ -3910,13 +3910,13 @@ Sans cette étape, le véhicule semblerait accélérer continuellement vers le b
 
 Une fois l'accélération exprimée dans le repère Navigation, la vitesse est obtenue par intégration.
 
-\[
+$$
 v_{k+1}
 =
 v_k
 +
 a\Delta t
-\]
+$$
 
 Chaque nouvelle mesure modifie donc directement la vitesse estimée.
 
@@ -3926,13 +3926,13 @@ Chaque nouvelle mesure modifie donc directement la vitesse estimée.
 
 La position est obtenue en intégrant la vitesse.
 
-\[
+$$
 p_{k+1}
 =
 p_k
 +
 v\Delta t
-\]
+$$
 
 Le principe complet devient alors :
 
@@ -4433,13 +4433,13 @@ Le filtre calcule la différence entre les deux.
 
 Cette différence est appelée **innovation**.
 
-\[
+$$
 Innovation
 =
 Position_{GNSS}
 -
 Position_{INS}
-\]
+$$
 
 ---
 
@@ -4629,19 +4629,19 @@ La RMSE mesure l'écart moyen entre la trajectoire estimée et la trajectoire r�
 
 Elle est définie par :
 
-\[
+$$
 RMSE=
 \sqrt{
 \frac1N
 \sum_{k=1}^{N}
 e_k^2
 }
-\]
+$$
 
 où :
 
-- \(N\) représente le nombre d'échantillons ;
-- \(e_k\) correspond à l'erreur de position au temps \(k\).
+- $N$ représente le nombre d'échantillons ;
+- $e_k$ correspond à l'erreur de position au temps $k$.
 
 Plus la RMSE est faible, plus la qualité de la navigation est élevée.
 
