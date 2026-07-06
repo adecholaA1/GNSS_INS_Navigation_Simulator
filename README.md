@@ -1,5 +1,12 @@
 # Simulateur de Navigation Intégrée GNSS/INS
 
+
+<p align="center">
+
+<img src="docs/demo.gif" width="900"/>
+
+</p>
+
 > **Projet de recherche et développement (R&D)** consacré à la conception d'une chaîne complète de navigation intégrée combinant un système de positionnement par satellites (GNSS) et une centrale inertielle (INS). L'objectif est de reproduire, dans un environnement de simulation maîtrisé, les principaux algorithmes utilisés dans les systèmes de navigation modernes afin d'étudier leur fonctionnement, leurs performances et leurs limites.
 
 ---
