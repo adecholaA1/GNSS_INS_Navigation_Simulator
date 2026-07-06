@@ -4,6 +4,33 @@
 
 ---
 
+
+
+# 🎥 Démonstration
+
+Le simulateur exécute automatiquement l'ensemble de la chaîne de navigation :
+
+- génération de la trajectoire de référence ;
+- simulation de la constellation GNSS ;
+- estimation de position par Gauss-Newton ;
+- calcul des indicateurs DOP ;
+- détection et exclusion des fautes (RAIM/FDE) ;
+- filtrage de Kalman ;
+- navigation inertielle Strapdown ;
+- fusion GNSS/INS ;
+- visualisation des performances.
+
+<p align="center">
+
+<img src="docs/demo.gif" width="900"/>
+
+</p>
+
+▶ **Vidéo complète (haute résolution)** : [navigation_demo.mp4](docs/navigation_demo.mp4)
+
+
+---
+
 # 1. Introduction
 
 La navigation est au cœur de nombreuses applications modernes : drones autonomes, véhicules terrestres, robots mobiles, aéronautique, spatial, maritime ou encore défense. Quel que soit le domaine considéré, un système de navigation doit répondre à plusieurs exigences fondamentales :
@@ -56,29 +83,6 @@ Chaque composant est implémenté indépendamment afin de pouvoir être étudié
 Cette architecture modulaire permet également d'intégrer progressivement des algorithmes plus avancés tels que le Weighted Least Squares, le Weighted RAIM, l'Error-State Kalman Filter ou encore le couplage serré GNSS/INS.
 
 ---
-
-
-# 🎥 Démonstration
-
-Le simulateur exécute automatiquement l'ensemble de la chaîne de navigation :
-
-- génération de la trajectoire de référence ;
-- simulation de la constellation GNSS ;
-- estimation de position par Gauss-Newton ;
-- calcul des indicateurs DOP ;
-- détection et exclusion des fautes (RAIM/FDE) ;
-- filtrage de Kalman ;
-- navigation inertielle Strapdown ;
-- fusion GNSS/INS ;
-- visualisation des performances.
-
-<p align="center">
-
-<img src="docs/demo.gif" width="900"/>
-
-</p>
-
-▶ **Vidéo complète (haute résolution)** : [navigation_demo.mp4](docs/navigation_demo.mp4)
 
 
 # 3. Architecture du dépôt
