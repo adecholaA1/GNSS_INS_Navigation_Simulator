@@ -127,7 +127,7 @@ Cette organisation permet de faire évoluer indépendamment chaque composant du 
 ## Cloner le dépôt
 
 ```bash
-git clone https://github.com/<utilisateur>/GNSS_INS_Navigation_Simulator.git
+git clone https://github.com/adecholaA1/GNSS_INS_Navigation_Simulator.git
 
 cd GNSS_INS_Navigation_Simulator
 ```
