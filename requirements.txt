@@ -1,0 +1,23 @@
+# GNSS / INS Navigation Simulator
+# Python >= 3.12
+
+numpy>=2.4.0
+scipy>=1.18.0
+matplotlib>=3.11.0
+pandas>=2.3.0
+
+# Export des résultats
+openpyxl>=3.1.0
+
+# Notebooks
+jupyter>=1.1.0
+notebook>=7.0.0
+ipykernel>=6.29.0
+
+# Visualisation 3D optionnelle
+pyvista>=0.48.0
+pyvistaqt>=0.12.0
+vtk>=9.6.0
+
+# Utilitaires
+tqdm>=4.68.0
