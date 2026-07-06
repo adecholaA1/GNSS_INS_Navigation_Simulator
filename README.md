@@ -26,7 +26,7 @@ Le simulateur exécute automatiquement l'ensemble de la chaîne de navigation :
 
 </p>
 
-▶ **Vidéo complète (haute résolution)** : [navigation_demo.mp4](docs/navigation_demo.mp4)
+<!-- ▶ **Vidéo complète (haute résolution)** : [navigation_demo.mp4](docs/navigation_demo.mp4) -->
 
 
 ---
